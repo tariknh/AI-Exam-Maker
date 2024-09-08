@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-  const prompt = `Write me a json object containing structured tasks from the exam im giving you. I want you to format it as a proffesional exam. I also want the equations in katex format Please return the output as a valid JSON string. Make sure all backslashes are escaped, especially in LaTeX expressions. Newline characters should be escaped as \\n. Ensure all keys and values are enclosed in double quotes and follow proper JSON syntax. The different fields i want is: interface Part {
+  const prompt = `Write me a json object containing structured tasks from the exam im giving you. I want you to format it as a proffesional exam. I also want the equations in katex format Please return the output as a valid JSON string. The different fields i want is: interface Part {
   letter: string;
   description: string;
 }

@@ -137,7 +137,10 @@ const fakeExam = {
         {
           letter: "a)",
           description:
-            "Gitt \\(z = 3 + 5i\\) og \\(w = 2 - 3i\\). Regn ut \\(zw\\), \\(\\overline{w}^2\\) og \\(\\frac{z}{w}\\).",
+            String.raw`% \f is defined as #1f(#2) using the macro
+\f\relax{x} = \int_{-\infty}^\infty
+    \f\hat\xi\,e^{2 \pi i \xi x}
+    \,d\xi`,
         },
         {
           letter: "b)",
@@ -256,7 +259,8 @@ export function InputFile() {
             const newExam = ExtractText(e);
             const result = await newExam;
             console.log(result, "RESULT");
-            const cleanedString = result.replace(/```json|```/g, "");
+            const cleanedString = result.replace(/```json|```/g, "").replace(/\\/g, '\\\\') // Escaping backslashes
+            .replace(/"/g, '\\"');  // Escaping double quotes
 
             // Parse the cleaned string into a JSON object
             console.log(cleanedString, "CLEANED STRING");

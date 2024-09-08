@@ -72,7 +72,7 @@ export default function ExamContent({ examData }: { examData: Exam }) {
               <CardContent>
                 {task.description && (
                   <p className="mb-4">
-                    <InlineMath>{task.description}</InlineMath>
+                    <InlineMath>{String.raw`${task.description}`}</InlineMath>
                   </p>
                 )}
                 {task.parts && task.parts.length > 0 && (
@@ -80,7 +80,8 @@ export default function ExamContent({ examData }: { examData: Exam }) {
                     {task.parts.map((part) => (
                       <li key={part.letter}>
                         <span className="font-medium">{part.letter} </span>
-                        {part.description}
+
+                        <InlineMath>{String.raw`${part.description}`}</InlineMath>
                       </li>
                     ))}
                   </ol>
